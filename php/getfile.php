@@ -15,11 +15,6 @@
             margin-top: 0;
             margin-bottom: 0;
         }
-        #post-title {
-            font-size: 2.5rem;
-            margin-top: 0;
-            margin-bottom: 0;
-        }
         #title {
             font-size: 2rem;
             margin-top: 0;
@@ -44,18 +39,23 @@
     <!---the left bar-->
     <div id="left" style="float: left; width: 12rem;">ok then</div>
 
-    <!---the posts-->
-    <div id="new-post" style="float: left;">
-        <form action="POST" action="./index.php">
-            <label for="title" id="post-title">post title</label>
-            <br>
-            <input type="text" name="title" id="title" maxlength="32">
-            <br>
-            <textarea name="body" id="body" cols="58" rows="10" maxlength="350" resize="none"></textarea>
-            <br>
-            <input type="submit" value="done!" style="width: 34.2rem;">
-        </form>
+    <div id="about" style="float: left;">
+        <?php
+            if (str_ends_with($_GET["file"], ".txt"))
+            {
+                $content = readfile($_GET["file"]);
+                if ($content == "0")
+                {
+                    print("hmm... this file is empty");
+                    die;
+                }
+                print($content);
+            }
+            else
+            {
+                print("woops... file not found");
+            }
+        ?>
     </div>
 </body>
-
 </html>

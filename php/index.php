@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Face Punch</title>
+    <title>Face Punch | Homepage</title>
 </head>
 
 <body>
@@ -41,10 +41,11 @@
     </script>
 
     <!---title-->
-    <h1 style="padding-left: 12rem">Face Punch</h1>
+    <img src="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" style="width: 12rem; height: auto; position: absolute;">
+    <h1 style="margin-left: 12rem">Face Punch</h1>
 
     <!---the left bar-->
-    <div id="left" style="float: left; width: 12rem;">
+    <div id="left" style="float: left; width: 12rem; padding-top: 4rem;">
         Do you want to make a <a href="/new-post.php">new post</a>?
     </div>
 
