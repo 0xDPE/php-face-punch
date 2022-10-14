@@ -30,7 +30,6 @@
 
         tbody {
             display: inline-block;
-            width: 32rem;
         }
     </style>
 
@@ -50,38 +49,43 @@
 
     <!---the posts-->
     <div id="posts" style="float: left; display: inline-block; width: 32rem;">
-        <table bgcolor="black" >
-            <tr width="32rem">
-                <th bgcolor="lightgrey" width="250" height="10" display="inline-block"><b>title</b></th>
-                <th bgcolor="lightgrey" width="500" height="10" display="inline-block"><b>body</b></th>
-            </tr>
         <?php
-            // for any incoming stuff
-            if (!empty($_GET["body"]))
+            $conn = new PDO("sqlite:database\\news.db");
+
+            // this file also renders news, if the id is passed hen it should show the respective news, else it will give a table of the news
+            if ($_GET["id"])
             {
-                $title = $_GET["title"];
-                $body_ = str_replace("<", "[", str_replace("\n", "", $_GET["body"]));
-
-                $file = fopen("messages.txt", "a");
-
-                fwrite($file, "\"$title\" => \"$body_\"\n");
+                $sth = $conn->prepare("SELECT * FROM news where id = ".$_GET["id"]);
+                $sth->execute();
+                var_dump($sth->fetchAll());
             }
 
-            // displays posts
-            foreach(file("messages.txt") as $line) {
-                $line = explode(" => ", $line);
-                $title = str_replace('"', "", $line[0]);
-                $body = str_replace('"', "", $line[1]);
+            else {
+
+                $sth = $conn->prepare("SELECT * FROM news");
+                $sth->execute();
+
 
                 print("
-                    <tr width=\"10rem\" display=\"inline-block\">
-                        <td height=\"100\" width=\"10rem\">".$title."</td>
-                        <td height=\"100\" width=\"10rem\">".$body."</td>
+                    <table bgcolor=\"black\">
+                        <tr width=\"32rem\">
+                            <th bgcolor=\"lightgrey\" width=\"250\" height=\"10\" display=\"inline-block\">
+                            <b>title</b>
+                        </th>
                     </tr>
                 ");
+
+                foreach ($sth->fetchAll() as $key) {
+                    print("<tr>");
+
+                    print("<td><a href=\"/news.php?id=".$key["id"]."\">".$key["title"]."</a></td>");
+
+                    print("</tr>");
+                }
+
+                print("</table>");
             }
         ?>
-        <table>
     </div>
 </body>
 
