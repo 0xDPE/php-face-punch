@@ -35,7 +35,7 @@
     </style>
 
     <!---title-->
-    <img src="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" style="width: 12rem; height: auto; position: absolute;">
+    <img src="troll.png" style="width: 12rem; height: auto; position: absolute;">
     <h1 style="margin-left: 12rem">Face Punch</h1>
 
     <!---the left bar-->
@@ -56,32 +56,19 @@
                 <th bgcolor="lightgrey" width="250" height="10" display="inline-block"><b>title</b></th>
                 <th bgcolor="lightgrey" width="500" height="10" display="inline-block"><b>body</b></th>
             </tr>
-        <?php
-            // for any incoming stuff
-            if (!empty($_GET["body"]))
-            {
-                $title = $_GET["title"];
-                $body_ = str_replace("<", "[", str_replace("\n", "", $_GET["body"]));
-
-                $file = fopen("messages.txt", "a");
-
-                fwrite($file, "\"$title\" => \"$body_\"\n");
-            }
-
-            // displays posts
-            foreach(file("messages.txt") as $line) {
-                $line = explode(" => ", $line);
-                $title = str_replace('"', "", $line[0]);
-                $body = str_replace('"', "", $line[1]);
-
-                print("
-                    <tr width=\"10rem\" display=\"inline-block\">
-                        <td height=\"100\" width=\"10rem\">".$title."</td>
-                        <td height=\"100\" width=\"10rem\">".$body."</td>
-                    </tr>
-                ");
-            }
-        ?>
+            <?php
+                $conn = new PDO("sqlite:database/posts.db");
+                $stmt = $conn->prepare("SELECT * FROM posts");
+                $stmt->execute();
+                foreach ($stmt->fetchAll() as $key) {
+                    print("
+                        <tr width=\"10rem\" display=\"inline-block\">
+                            <td height=\"100\" width=\"10rem\">".$key["title"]."</td>
+                            <td height=\"100\" width=\"10rem\">".$key["body"]."</td>
+                        </tr>
+                    ");
+                }
+            ?>
         <table>
     </div>
 </body>

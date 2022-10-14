@@ -32,7 +32,7 @@
             margin-top: 0;
         }
 </style>
-    <img src="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" style="width: 12rem; height: auto; position: absolute;">
+    <img src="troll.png" style="width: 12rem; height: auto; position: absolute;">
     <!---title-->
     <h1 style="padding-left: 12rem; padding-top: 1rem">Face Punch</h1>
 

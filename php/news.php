@@ -24,12 +24,22 @@
             margin-bottom: 0;
         }
 
+        h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
         td {
             vertical-align: top;
         }
 
         tbody {
             display: inline-block;
+        }
+
+        #paper {
+            padding-left: 1rem;
         }
     </style>
 
@@ -53,11 +63,18 @@
             $conn = new PDO("sqlite:database\\news.db");
 
             // this file also renders news, if the id is passed hen it should show the respective news, else it will give a table of the news
-            if ($_GET["id"])
+            if (isset($_GET["id"]))
             {
+                print("<div id=\"paper\">");
+
                 $sth = $conn->prepare("SELECT * FROM news where id = ".$_GET["id"]);
                 $sth->execute();
-                var_dump($sth->fetchAll());
+                $data = $sth->fetchAll()[$_GET["id"]];
+                print("<h2>".$data["title"]."</h2>");
+                print("<br>");
+                print("<body>".$data["body"]."</body>");
+
+                print("</div>");
             }
 
             else {

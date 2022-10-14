@@ -39,7 +39,6 @@
 
     <!---the left bar-->
     <div id="left" style="float: left; width: 12rem;">
-        </>
     </div>
 
     <!---the posts-->
