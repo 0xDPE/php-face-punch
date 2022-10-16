@@ -1,5 +1,0 @@
-# This file has all the messages in it
-messages.txt
-
-# we dont want to store an of that
-*.db

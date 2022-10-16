@@ -1,0 +1,35 @@
+table tr:nth-child(odd) td {
+    background: lightgrey;
+}
+
+table tr:nth-child(even) td {
+    background: grey;
+}
+
+h1 {
+    font-size: 5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 3.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+td {
+    vertical-align: top;
+}
+
+tbody {
+    display: inline-block;
+    width: 32rem;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
