@@ -1,3 +1,5 @@
 [+] basic forum
+[+] make an api
 [ ] Auto refresh with sockets, js
 [ ] Better css
+[ ] Statistics from cookies

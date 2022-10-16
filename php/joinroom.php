@@ -17,23 +17,23 @@
         if ($data["pword"] == $_POST["pword"])
         {
             $conn = new PDO("sqlite:db/chats.db");
-
+            
             try
             {
                 $stm = $conn->prepare("SELECT * FROM chat_".$data["id"]);
                 $stm->execute();
-
+                
                 print("<h1>Face Punch</h1>");
                 print("<h2>".$data["name"]."</h2>");
-
+                
                 print<<<LABLE
-                    <table id="messages">
-                        <tr>
-                            <th style="width: 25rem">mesage</th>
-                            <th style="width: 10rem">date</th>
-                        </tr>
+                <table id="messages">
+                <tr>
+                <th style="width: 25rem">mesage</th>
+                <th style="width: 10rem">date</th>
+                </tr>
                 LABLE;
-
+                
                 // itterates over all messages in the chat
                 foreach($stm->fetchAll() as $msg)
                 {
@@ -42,10 +42,12 @@
                     print("<td>".$msg["date"]."</td>");
                     print("</tr>");
                 }
-
+                
                 print("</table>");
                 print <<< FORM
-                <form>
+                <form id="new-message">
+                    <input id="msg" type="text">
+                    <input hidden type="submit">
                 </form>
                 FORM;
             }
@@ -55,13 +57,14 @@
                 $stm = $conn->prepare("DELETE FROM chats WHERE id=\"chat_".$data["id"]."\"");
                 $stm->execute();
             }
-
+            
         }
         else
         {
             // redirects user
             print("<script>window.location.href = window.location.href.replace(\"joinroom.php\", \"\")</script>");
         }
-    ?>
+        ?>
+    <script src="script.js"></script>
 </body>
 </html>
