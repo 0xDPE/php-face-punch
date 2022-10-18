@@ -32,6 +32,7 @@
                             <td>
                                 <form action=\"/joinroom.php\" method=\"post\">
                                     <input type=\"text\" name=\"chid\" value=\"".$key["id"]."\" hidden>
+                                    <input type=\"text\" name=\"name\" value=\"".$key["name"]."\" hidden>
                                     <input type=\"password\" name=\"pword\">
                                     <input type=\"submit\" value=\"join\">
                                 </form>
