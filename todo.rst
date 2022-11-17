@@ -3,3 +3,4 @@
 - [-] Auto refresh with sockets, js
 - [-] Better css
 - [-] Statistics from cookies
+- [-] Make the security not terrible
